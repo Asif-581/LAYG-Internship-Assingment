@@ -1,0 +1,14 @@
+<div class="filter-container">
+  <input type="text" placeholder="Search..." class="filter-input" [formControl]="searchControl" />
+
+  <select [formControl]="regionControl" class="filter-dropdown">
+    <option value="All" >All</option>
+    <option value="Africa">Africa</option>
+    <option value="America">America</option>
+    <option value="Asia">Asia</option>
+    <option value="Europe">Europe</option>
+    <option value="Polar">Polar</option>
+    <option value="Oceania">Oceania</option>
+  </select>
+</div>
+

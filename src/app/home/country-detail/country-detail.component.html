@@ -1,0 +1,75 @@
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>
+
+<div *ngIf="!isLoading" class="container">
+  <ng-container *ngIf="country; else noData">
+    <div class="sub-container">
+      <div class="back-btn">
+        <button routerLink="/">Back</button>
+      </div>
+      <div class="big-container">
+        <div class="img-container">
+          <img [src]="country.flag" [alt]="country.name" />
+        </div>
+        <div class="content-container">
+          <h1>{{ country.name }}</h1>
+          <div class="country-detail">
+            <div class="country-info">
+              <label
+                >Native Name: <span>{{ country.nativeName }}</span></label
+              >
+              <label
+                >Population:
+                <span>{{ country.population | number }}</span></label
+              >
+              <label
+                >Region: <span>{{ country.region }}</span></label
+              >
+              <label
+                >Sub Region: <span>{{ country.subregion }}</span></label
+              >
+              <label
+                >Capital: <span>{{ country.capital }}</span></label
+              >
+            </div>
+            <div class="country-info">
+              <label
+                >Top Level Domain:
+                <span>{{ country.topLevelDomainCommaSeperated }}</span></label
+              >
+              <label
+                >Currencies:
+                <span>{{
+                  country.currencyCommaSeperated ?? "Not Available"
+                }}</span></label
+              >
+              <label
+                >Languages:
+                <span>{{
+                  country.languageCommaSeprated ?? "Not Available"
+                }}</span></label
+              >
+            </div>
+          </div>
+
+          <div class="border-container">
+            <label>Border countries:</label>
+            <ng-container *ngIf="countryBorder?.length! > 0; else notAvailable">
+              <ng-container *ngFor="let border of countryBorder">
+                <button (click)="onBorderClick(border?.alpha3Code!)">{{ border.alpha3Code }}</button>
+              </ng-container>
+            </ng-container>
+
+            <ng-template #notAvailable>
+              <label>Not Available</label>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noData>
+    <app-no-content></app-no-content>
+  </ng-template>
+</div>

@@ -1,0 +1,23 @@
+<ng-container *ngIf="isLoading">
+  <app-loader></app-loader>
+</ng-container>
+
+<div *ngIf="!isLoading" class="container">
+  <app-filter
+    (selectedRegion)="selectedRegionEventHandler($event)"
+    (searchedValue)="searchedValueEventHandler($event)"
+  ></app-filter>
+  <ng-container>
+    <div class="country-container">
+      <ng-container *ngIf="!!countries.length; else noData">
+        <app-country-card
+          *ngFor="let country of countries"
+          [country]="country"
+        ></app-country-card>
+      </ng-container>
+      <ng-template #noData>
+        <app-no-content></app-no-content>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>
